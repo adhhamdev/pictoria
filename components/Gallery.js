@@ -1,12 +1,11 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { createApi } from 'unsplash-js'
-import { Inter } from 'next/font/google'
+import { inter } from '@/utils/fonts';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid'
 import Toolbar from './Toolbar';
 import ImageCard from '@/components/ImageCard'
 
-const inter = Inter({ subsets: ['latin'] })
 const Gallery = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [listData, setListData] = useState({ results: [], total: 0 });
@@ -57,7 +56,7 @@ const Gallery = ({ children }) => {
   return (
     <div className="gallery">
       <Toolbar />
-      {error && <h1 className={`${inter.className} error`}>{error}</h1>}
+      {error && <h1 className="error" style={{fontFamily: inter.style.fontFamily}}>{error}</h1>}
       {!error &&
         isLoading ?
           children :
@@ -68,7 +67,6 @@ const Gallery = ({ children }) => {
           </div>}
         {!error && <div className="paginator">
         <button
-          className={`next ${inter.className}`}
           title="First Page"
           onClick={handleFirstPage}
           disabled={page === 1}
@@ -76,19 +74,17 @@ const Gallery = ({ children }) => {
           <ChevronDoubleLeftIcon />
         </button>
         <button
-          className={`prev ${inter.className}`}
           title="Previous"
           onClick={handlePreviousPage}
           disabled={page === 1}
         >
           <ArrowLeftCircleIcon />
         </button>
-        <div className="page">
+        <div className={`page`}>
           <p className="pgNo">{page}</p>
           <small>Page</small>
         </div>
         <button
-          className={`next ${inter.className}`}
           title="Next"
           onClick={handleNextPage}
           disabled={page === totalPages}
@@ -96,7 +92,7 @@ const Gallery = ({ children }) => {
           <ArrowRightCircleIcon />
         </button>
         <button
-          className={`next ${inter.className}`}
+          className={`next`}
           title="Last Page"
           onClick={handleLastPage}
           disabled={page === totalPages}

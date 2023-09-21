@@ -3,11 +3,9 @@ import Link from 'next/link'
 import NavLink from '@/components/NavLink'
 import Image from 'next/image'
 import DarkModeButton from '@/components/DarkModeButton'
-import { Inter } from 'next/font/google'
+import { inter } from '@/utils/fonts'
 import { HomeIcon, RectangleGroupIcon, HeartIcon, IdentificationIcon } from '@heroicons/react/24/solid'
 import { HomeIcon as HomeIconOutline, RectangleGroupIcon as RectangleGroupIconOutline, HeartIcon as HeartIconOutline, IdentificationIcon as IdentificationIconOutline } from '@heroicons/react/24/outline'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Pictoria | Wonder in the world of Photography',
@@ -18,9 +16,16 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const navLinks = [
+    { href: '/', iconOutline: <HomeIconOutline />, icon: <HomeIcon />, text: 'Home' },
+    { href: '/browse', iconOutline: <RectangleGroupIconOutline />, icon: <RectangleGroupIcon />, text: 'Browse' },
+    { href: '/favorites', iconOutline: <HeartIconOutline />, icon: <HeartIcon />, text: 'Favorites' },
+    { href: '/about', iconOutline: <IdentificationIconOutline />, icon: <IdentificationIcon />, text: 'About' },
+  ];
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang='en'>
+      <body style={{fontFamily: inter.style.fontFamily}}>
         <header>
           <div className="logo">
             <Link href="/">
@@ -28,20 +33,17 @@ export default function RootLayout({ children }) {
             </Link>
           </div>
           <nav>
-            {renderNavLink('/', <HomeIconOutline />, <HomeIcon />, 'Home')}
-            {renderNavLink('/browse', <RectangleGroupIconOutline />, <RectangleGroupIcon />, 'Browse')}
-            {renderNavLink('/favorites', <HeartIconOutline />, <HeartIcon />, 'Favorites')}
-            {renderNavLink('/about', <IdentificationIconOutline />, <IdentificationIcon />, 'About')}
+            {navLinks.map((link) => renderNavLink(link.href, link.iconOutline, link.icon, link.text))}
             <DarkModeButton />
           </nav>
         </header>
         {children}
         <footer>
-          <p>&copy; Copyright 2023 Pictoria | All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Pictoria | All rights reserved.</p>
         </footer>
       </body>
     </html>
-  )
+  );
 }
 
 function renderNavLink(href, iconOutline, icon, text) {
