@@ -17,7 +17,7 @@ const Gallery = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const unsplashAccessKey = process.env.UNSPLASH_ACCESS_KEY;
+      const unsplashAccessKey = process.env.API_KEY;
       if (!unsplashAccessKey) {
         throw new Error('Unsplash API key is missing or invalid');
       }
