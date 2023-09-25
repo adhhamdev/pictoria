@@ -23,7 +23,7 @@ const CardFavButton = ({ likes }) => {
   return (
     <button onClick={handleClick} title={isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}>
       {heartIcon}
-      <p className={inter.className}>{likes}</p>
+      <p style={inter.style}>{likes}</p>
     </button>
   );
 };

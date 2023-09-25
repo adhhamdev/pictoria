@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
-      <body style={{fontFamily: inter.style.fontFamily}}>
+      <body style={inter.style}>
         <header>
           <div className="logo">
             <Link href="/">

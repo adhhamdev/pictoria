@@ -10,10 +10,10 @@ const ImageCard = ({ image }) => {
     return (
       <p className="desc">
         By {" "}
-         <a href={user.links.html} style={{fontFamily: inter.style.fontFamily}}>
+         <a href={user.links.html} style={inter.style}>
           {user.name}
         </a> {" "}
-         on <a href="https://unsplash.com" style={{fontFamily: inter.style.fontFamily}}>Unsplash</a>
+         on <a href="https://unsplash.com" style={inter.style}>Unsplash</a>
       </p>
     );
   };

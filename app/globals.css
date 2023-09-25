@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -122,6 +126,15 @@ nav a svg {
   transform: translateX(24px);
 }
 
+.banner {
+  margin: 0 20px;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 2rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
 .Toolbar {
   display: flex;
   justify-content: space-between;
@@ -189,14 +202,22 @@ nav a svg {
   height: 500px;
   border-radius: 10px;
   position: relative;
-  background: linear-gradient(45deg, #aaa, #888);
-  animation: reflect 1s infinite;
+  background-color: #def;
+  -webkit-animation: breathe 1.5s ease-in-out infinite;
+  animation: breathe 1.5s ease-in-out infinite;
 }
-@keyframes reflect {
+@keyframes breathe {
+  0% {
+    background-color: #def;
+  }
+  50% {
+    background-color: #eee;
+  }
   100% {
-    background-position: 50% 100%;
+    background-color: #def;
   }
 }
+
 
 .error {
   display: flex;

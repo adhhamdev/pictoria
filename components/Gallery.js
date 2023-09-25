@@ -56,7 +56,7 @@ const Gallery = ({ children }) => {
   return (
     <div className="gallery">
       <Toolbar />
-      {error && <h1 className="error" style={{fontFamily: inter.style.fontFamily}}>{error}</h1>}
+      {error && <h1 className="error" style={inter.style}>{error}</h1>}
       {!error &&
         isLoading ?
           children :
