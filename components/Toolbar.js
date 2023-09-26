@@ -1,46 +1,51 @@
-"use client"
 import { useState } from "react";
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { inter } from "@/utils/fonts";
 
 const Toolbar = () => {
-    const [sort, setSort] = useState('latest');
+  const [sort, setSort] = useState('latest');
+  const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        console.log(searchTerm);
-    }
-    return (
-        <div className="Toolbar">
-            <div className="tool">
-                <ArrowsUpDownIcon />
-                <div className="sort">
-                    <div className="sortOption">
-                        <input type="radio" name="sort" id="latest" value="latest" checked={sort === 'latest'} onChange={e => setSort(e.target.value)} />
-                        <label htmlFor="latest">Latest</label>
-                    </div>
-                    <div className="sortOption">
-                        <input type="radio" name="sort" id="oldest" value="oldest" checked={sort === 'oldest'} onChange={e => setSort(e.target.value)} />
-                        <label htmlFor="oldest">Oldest</label>
-                    </div>
-                    <div className="sortOption">
-                        <input type="radio" name="sort" id="popular" value="popular" checked={sort === 'popular'} onChange={e => setSort(e.target.value)} />
-                        <label htmlFor="popular">Popular</label>
-                    </div>
-                </div>
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchTerm);
+  };
+
+  return (
+    <nav className="toolbar">
+      <div className="tool">
+        <ArrowsUpDownIcon aria-hidden="true" />
+        <div className="sort">
+          {['latest', 'oldest', 'popular'].map((option) => (
+            <div className="sortOption" key={option}>
+              <input
+                type="radio"
+                name="sort"
+                id={option}
+                value={option}
+                checked={sort === option}
+                onChange={(e) => setSort(e.target.value)}
+              />
+              <label htmlFor={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</label>
             </div>
-            <form onSubmit={handleSearch} className="search-bar">
-                <MagnifyingGlassIcon width={40} />
-                <input
-                    id="search"
-                    type="search"
-                    placeholder="Search for any images..."
-                    style={inter.style}
-                />
-                <button type="submit">Search</button>
-            </form>
+          ))}
         </div>
-    );
+      </div>
+      <form onSubmit={handleSearch} className="search-bar">
+        <MagnifyingGlassIcon aria-hidden="true" width={40} />
+        <input
+          id="search"
+          type="search"
+          placeholder="Search for any images..."
+          style={inter.style}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          aria-label="Search for any images"
+        />
+        <button type="submit">Search</button>
+      </form>
+    </nav>
+  );
 };
 
 export default Toolbar;
