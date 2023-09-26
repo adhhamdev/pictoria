@@ -5,10 +5,6 @@ const Shimmer = () => {
             <div className="imageShimmer"></div>
             <div className="imageShimmer"></div>
             <div className="imageShimmer"></div>
-            <div className="imageShimmer"></div>
-            <div className="imageShimmer"></div>
-            <div className="imageShimmer"></div>
-            <div className="imageShimmer"></div>
         </div>
     );
 }

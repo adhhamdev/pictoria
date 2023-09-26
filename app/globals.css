@@ -127,12 +127,57 @@ nav a svg {
 }
 
 .banner {
-  margin: 0 20px;
-  border-radius: 10px;
-  padding: 20px;
+  margin: 50px;
+  padding: 40px 0;
+  font-weight: 900;
   font-size: 2rem;
-  text-align: center;
+  color: #112;
+  background-image: url(/logo-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.banner p {
+  width: 100%;
   text-wrap: balance;
+  margin-left: 14%;
+  -webkit-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -moz-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -ms-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  -o-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slideRight {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.banner > span {
+  color: #000;
 }
 
 .Toolbar {
@@ -153,40 +198,85 @@ nav a svg {
   margin-right: 5px;
 }
 
-.Toolbar select {
-  padding: 5px;
+.Toolbar input, .Toolbar button {
+  padding: 6px;
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
+}
+
+.Toolbar .sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Toolbar .sort .sortOption {
+  border-radius: 30px;
+  border: 2px solid #112;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.Toolbar .sort .sortOption input {
+  display: none;
+}
+
+.Toolbar .sort .sortOption input + label {
+  display: inline-block;
+  border-radius: 30px;
+  padding: 8px 16px;
   cursor: pointer;
 }
 
-.Toolbar select option {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.Toolbar .sort .sortOption label:hover {
+  background-color: #ddd;
+}
+
+.Toolbar .sort .sortOption input:checked + label {
+  display: inline-block;
+  background: #112;
+  color: #fff;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 50%;
+  flex-grow: 2fr 1fr;
+}
+
+.search-bar input {
+  padding: 10px 12px;
+  border: 1px solid #112;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+.search-bar input:focus {
   outline: none;
-  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.Toolbar input {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  outline: none;
-  cursor: pointer;
+.search-bar input::placeholder {
+  color: #aaa;
 }
 
-.Toolbar button {
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  outline: none;
+.search-bar button {
+  padding: 10px 16px;
+  background-color: #234;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.Toolbar button:hover {
-  background-color: #ccc;
+.search-bar button:hover {
+  background-color: #000;
 }
 
 .galleryShimmer {
@@ -202,19 +292,19 @@ nav a svg {
   height: 500px;
   border-radius: 10px;
   position: relative;
-  background-color: #def;
+  background-color: #ccd;
   -webkit-animation: breathe 1.5s ease-in-out infinite;
   animation: breathe 1.5s ease-in-out infinite;
 }
 @keyframes breathe {
   0% {
-    background-color: #def;
+    background-color: #ccd;
   }
   50% {
     background-color: #eee;
   }
   100% {
-    background-color: #def;
+    background-color: #ccd;
   }
 }
 
@@ -260,10 +350,13 @@ nav a svg {
 .imageCard .summary {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  padding: 20px;
+  margin: 5px;
+  border-radius: 10px;
+  padding: 15px;
   color: #eee;
-  text-shadow: 1px 2px 10px #000;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .imageCard .summary a {
@@ -275,10 +368,15 @@ nav a svg {
 .imageCard .actions {
   display: grid;
   position: absolute;
-  top: 0;
-  right: 0;
-  gap: 10px;
-  padding: 10px;
+  top: 5px;
+  right: 5px;
+  gap: 5px;
+  border-radius: 10px;
+  padding: 5px;
+  padding-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .imageCard .actions button svg, .imageCard .actions a svg {
@@ -335,7 +433,7 @@ nav a svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #000;
+  border: 2px solid #112;
   border-radius: 30px;
   padding: 8px;
   background: none;
@@ -343,7 +441,7 @@ nav a svg {
 }
 .paginator button:hover {
   color: #fff;
-  background-color: #000;
+  background-color: #112;
 }
 .paginator button:disabled {
   opacity: 0.5;
@@ -364,6 +462,7 @@ nav a svg {
   font-size: 1.4rem;
 }
 
+
 footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -376,7 +475,8 @@ footer {
   align-items: center;
   margin-top: 50px;
   padding: 20px;
-  background-color: #ccc;
+  color: #fff;
+  background-color: #112;
 }
 
 ::-webkit-scrollbar {

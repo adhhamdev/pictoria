@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main>
       <div className="banner" style={inter.style}>
-        <p>Whether you are a professional photographer, a creative enthusiast, or simply someone who loves beautiful images, Pictoria has something for you.</p>
+        <p>Whether you are a professional Photographer, a creative enthusiast, or simply someone who loves beautiful images, <span>Pictoria</span> has something for you.</p>
       </div>
       <Gallery>
         <Shimmer />
