@@ -1,13 +1,14 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
+import { inter } from "@/utils/fonts";
 
 const NavLink = ({ href, iconOutline, icon, text }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
-    <Link href={href} className={isActive ? "active" : ""}>
+    <Link href={href} className={isActive ? "active" : ""} style={inter.style}>
       {isActive ? icon : iconOutline} {text}
     </Link>
   );
