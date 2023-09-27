@@ -1,9 +1,8 @@
+"use client"
 import { useState, useEffect } from 'react';
-import { Inter } from 'next/font/google';
+import { inter } from '@/utils/fonts';
 import { HeartIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
-
-const inter = Inter({ subsets: ['latin'] });
 
 const CardFavButton = ({ likes }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -19,7 +18,7 @@ const CardFavButton = ({ likes }) => {
   const heartIcon = isFavorite ? <HeartIcon /> : <HeartIconOutline />;
 
   return (
-    <div
+    <button
       role="button"
       tabIndex={0}
       onClick={handleClick}
@@ -27,8 +26,8 @@ const CardFavButton = ({ likes }) => {
       title={isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
     >
       {heartIcon}
-      <p style={inter.style}>{likes}</p>
-    </div>
+      <span style={inter.style}>{likes}</span>
+    </button>
   );
 };
 

@@ -531,6 +531,7 @@ nav a svg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 5px;
   right: 5px;
@@ -543,8 +544,6 @@ nav a svg {
   backdrop-filter: blur(10px);
 }
 
-.imageCard .actions button svg,
-.imageCard .actions a svg {
 .imageCard .actions button svg,
 .imageCard .actions a svg {
   width: 50px;
@@ -563,13 +562,11 @@ nav a svg {
   cursor: pointer;
 }
 
-.imageCard .actions button p {
+.imageCard .actions button span {
   color: #fff;
   font-weight: bold;
 }
 
-.imageCard .actions button svg:hover,
-.imageCard .actions a svg:hover {
 .imageCard .actions button svg:hover,
 .imageCard .actions a svg:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -606,12 +603,10 @@ nav a svg {
   cursor: pointer;
 }
 
-
 .paginator button:hover {
   color: #fff;
   background-color: #112;
 }
-
 
 .paginator button:disabled {
   opacity: 0.5;
