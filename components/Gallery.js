@@ -1,4 +1,3 @@
-"use client"
 import { useState, useEffect } from 'react';
 import { createApi } from 'unsplash-js';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid';

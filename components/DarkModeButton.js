@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 "use client"
+=======
+>>>>>>> 274c4085547feea9c56e9137a76397009d6e4dbe
 import { useState } from 'react';
 import { MoonIcon } from '@heroicons/react/24/solid';
 

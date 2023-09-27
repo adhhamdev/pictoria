@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import React from 'react';
 import './globals.css'
+=======
+>>>>>>> 274c4085547feea9c56e9137a76397009d6e4dbe
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';

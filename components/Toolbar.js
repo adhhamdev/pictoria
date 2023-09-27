@@ -1,4 +1,3 @@
-"use client"
 import { useState } from "react";
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { inter } from "@/utils/fonts";
