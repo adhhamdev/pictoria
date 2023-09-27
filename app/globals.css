@@ -9,47 +9,27 @@ html {
 }
 
 header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 10px;
 }
 
 header .logo {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   padding: 0 10px;
 }
 
 nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 10px;
 }
 
 nav a {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
@@ -75,11 +55,7 @@ nav a svg {
 }
 
 .darkModeToggle { 
-  display: -webkit-box; 
-  display: -ms-flexbox; 
   display: flex; 
-  -webkit-box-align: center; 
-  -ms-flex-align: center; 
   align-items: center; 
   gap: 10px; 
   margin: 0 20px; 
@@ -131,21 +107,15 @@ nav a svg {
 } 
  
 .darkModeBtn input:focus + .slider { 
-  -webkit-box-shadow: 0 0 1px #000; 
   box-shadow: 0 0 1px #000; 
 } 
  
 .darkModeBtn input:checked + .slider:before { 
-  -webkit-transform: translateX(24px); 
   -ms-transform: translateX(24px); 
   transform: translateX(24px); 
 } 
-.darkModeToggle { 
-  display: -webkit-box; 
-  display: -ms-flexbox; 
+.darkModeToggle {
   display: flex; 
-  -webkit-box-align: center; 
-  -ms-flex-align: center; 
   align-items: center; 
   gap: 10px; 
   margin: 0 20px; 
@@ -196,13 +166,11 @@ nav a svg {
   background-color: #000; 
 } 
  
-.darkModeBtn input:focus + .slider { 
-  -webkit-box-shadow: 0 0 1px #000; 
+.darkModeBtn input:focus + .slider {
   box-shadow: 0 0 1px #000; 
 } 
  
 .darkModeBtn input:checked + .slider:before { 
-  -webkit-transform: translateX(24px); 
   -ms-transform: translateX(24px); 
   transform: translateX(24px); 
 } 
@@ -216,8 +184,7 @@ nav a svg {
   background-image: url(/logo-icon.png); 
   background-repeat: no-repeat; 
   background-size: contain; 
-  background-position: left center; 
-  -webkit-animation: fadeIn 2s; 
+  background-position: left center;
   -moz-animation: fadeIn 2s; 
   -ms-animation: fadeIn 2s; 
   -o-animation: fadeIn 2s; 
@@ -236,25 +203,19 @@ nav a svg {
 .banner p { 
   width: 100%; 
   overflow-wrap: break-word; 
-  margin-left: 14%; 
-  -webkit-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
-  -moz-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
-  -ms-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
-  -o-animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
+  margin-left: 14%;
   animation: slideRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
 } 
 
 @keyframes slideRight { 
-  0% { 
-    -webkit-transform: translateX(-100px); 
+  0% {
     transform: translateX(-100px); 
     opacity: 0; 
   } 
-  100% { 
-    -webkit-transform: translateX(0); 
+  100% {
     transform: translateX(0); 
     opacity: 1; 
-  } 
+  }
 } 
  
 .banner > span { 
@@ -262,25 +223,14 @@ nav a svg {
 }
 
 .Toolbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   margin: 10px;
   padding: 10px;
 }
 
 .Toolbar .tool {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -289,20 +239,8 @@ nav a svg {
   margin-right: 5px;
 }
 
-.Toolbar input,
-.Toolbar button {
-  padding: 6px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
 .Toolbar .sort {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 10px;
 }
@@ -336,15 +274,11 @@ nav a svg {
 }
 
 .search-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   gap: 10px;
   width: 50%;
-  -webkit-flex-grow: 2fr 1fr;
   -ms-flex-grow: 2fr 1fr;
   flex-grow: 2fr 1fr;
 }
@@ -359,7 +293,6 @@ nav a svg {
 
 .search-bar input:focus {
   outline: none;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -375,38 +308,22 @@ nav a svg {
   border-radius: 10px;
   font-size: 1.1rem;
   cursor: pointer;
-  -webkit-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 }
 
 .search-bar button:hover {
   background-color: #000;
 }
-/* End Code Snippet */
 
 .galleryShimmer {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   gap: 10px;
   padding: 10px;
@@ -418,7 +335,6 @@ nav a svg {
   border-radius: 10px;
   position: relative;
   background-color: #ccd;
-  -webkit-animation: breathe 1.5s ease-in-out infinite;
   animation: breathe 1.5s ease-in-out infinite;
 }
 
@@ -435,19 +351,8 @@ nav a svg {
 }
 
 .error {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   height: 50vh;
@@ -455,28 +360,8 @@ nav a svg {
 }
 
 .list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
   padding: 10px;
 }
@@ -501,8 +386,6 @@ nav a svg {
 }
 
 .imageCard:hover img {
-  -webkit-filter: brightness(40%);
-  -webkit-filter: brightness(40%);
   filter: brightness(40%);
 }
 
@@ -514,7 +397,6 @@ nav a svg {
   padding: 15px;
   color: #eee;
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -525,11 +407,7 @@ nav a svg {
 }
 
 .imageCard .actions {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -540,7 +418,6 @@ nav a svg {
   padding: 5px;
   padding-bottom: 10px;
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -551,8 +428,6 @@ nav a svg {
   border-radius: 50%;
   padding: 8px;
   color: #fff;
-  -webkit-filter: drop-shadow(1px 2px 8px rgba(0, 0, 0, 0.5));
-  -webkit-filter: drop-shadow(1px 2px 8px rgba(0, 0, 0, 0.5));
   filter: drop-shadow(1px 2px 8px rgba(0, 0, 0, 0.5));
 }
 
@@ -562,7 +437,7 @@ nav a svg {
   cursor: pointer;
 }
 
-.imageCard .actions button span {
+.imageCard .actions button p {
   color: #fff;
   font-weight: bold;
 }
@@ -589,11 +464,7 @@ nav a svg {
 }
 
 .paginator button {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   justify-content: center;
   border: 2px solid #112;

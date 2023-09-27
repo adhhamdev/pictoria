@@ -19,14 +19,13 @@ const CardFavButton = ({ likes }) => {
 
   return (
     <button
-      role="button"
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={e => e.key === 'Enter' && handleClick()}
       title={isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
     >
       {heartIcon}
-      <span style={inter.style}>{likes}</span>
+      <p style={inter.style}>{likes}</p>
     </button>
   );
 };
