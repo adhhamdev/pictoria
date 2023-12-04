@@ -7,7 +7,6 @@ const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPa
     ev.preventDefault();
     const query = ev.target.search.value.trim();
     const res = await unsplash.search.getPhotos({ query, perPage: 30 });
-    console.log(res)
     if (res.status === 200) {
       const list = res.response?.results ?? [];
       const total = res.response?.total ?? 0;

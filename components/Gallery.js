@@ -7,7 +7,7 @@ import ImageCard from '@/components/ImageCard';
 
 const Gallery = ({ children }) => {
 
-  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY;
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY || "eq_nBtpFvjy3KgmsPIcrmGXEsQ7-g7F1FWlJ2OOz01I";
   const unsplash = createApi({ accessKey: unsplashAccessKey });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -17,34 +17,32 @@ const Gallery = ({ children }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [sort, setSort] = useState('latest');
   
+  const fetchData = async () => {
+    setIsLoading(true);
+    if (!unsplashAccessKey) {
+      throw new Error('Unsplash API key is missing or invalid');
+    }
+    try {
+      const res = await unsplash.photos.list({ page, perPage: 30, orderBy: sort});
+      if (res.status === 200) {
+        const list = res.response?.results ?? [];
+        const total = res.response?.total ?? 0;
+        setError(null);
+        setListData({ results: list, total });
+        setTotalPages(Math.ceil(total / 30));
+      } else {
+        throw new Error(`${res.status} ${res.errors[0]}`);
+      }
+      setIsLoading(false);
+
+    } catch(err) {
+      setError(err)
+    }
+  };
   
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      if (!unsplashAccessKey) {
-        throw new Error('Unsplash API key is missing or invalid');
-      }
-      try {
-        const res = await unsplash.photos.list({ page, perPage: 30, orderBy: sort});
-        console.log(res)
-        if (res.status === 200) {
-          const list = res.response?.results ?? [];
-          const total = res.response?.total ?? 0;
-          setError(null);
-          setListData({ results: list, total });
-          setTotalPages(Math.ceil(total / 30));
-        } else {
-          throw new Error(`${res.status} ${res.errors[0]}`);
-        }
-        setIsLoading(false);
-
-      } catch(err) {
-        setError(err)
-        console.log(err)
-      }
-    };
-
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, sort]);
 
   const handleFirstPage = () => {

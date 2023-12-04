@@ -3,15 +3,23 @@ import { inter } from '@/utils/fonts';
 import { HeartIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
 
-const CardFavButton = ({ likes }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const CardFavButton = ({ id, likes, likedByUser }) => {
+  const [isFavorite, setIsFavorite] = useState(likedByUser);
 
   const handleClick = () => {
     setIsFavorite(prev => !prev);
   };
 
   useEffect(() => {
-    // set/fetch the favorite state of the image online
+    const updateUserLike = async () => {
+      const res = await fetch(`https://api.unsplash.com/photos/${id}/like`, {method: 'POST'});
+      console.log(res);
+      if (res.status === 201) {
+        console.log('Updated user like');
+      }
+    };
+    updateUserLike();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFavorite]);
 
   const heartIcon = isFavorite ? <HeartIcon fill='#f24' /> : <HeartIconOutline />;

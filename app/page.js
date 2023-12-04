@@ -1,7 +1,6 @@
 import Gallery from '@/components/Gallery'
 import Shimmer from '@/components/Shimmer'
-import Image from 'next/image';
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <div className="banner">
