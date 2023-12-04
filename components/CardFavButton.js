@@ -1,4 +1,3 @@
-"use client"
 import { useState, useEffect } from 'react';
 import { inter } from '@/utils/fonts';
 import { HeartIcon } from '@heroicons/react/24/solid';
@@ -15,7 +14,7 @@ const CardFavButton = ({ likes }) => {
     // set/fetch the favorite state of the image online
   }, [isFavorite]);
 
-  const heartIcon = isFavorite ? <HeartIcon /> : <HeartIconOutline />;
+  const heartIcon = isFavorite ? <HeartIcon fill='#f24' /> : <HeartIconOutline />;
 
   return (
     <button

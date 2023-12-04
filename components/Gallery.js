@@ -6,35 +6,46 @@ import Toolbar from './Toolbar';
 import ImageCard from '@/components/ImageCard';
 
 const Gallery = ({ children }) => {
+
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY;
+  const unsplash = createApi({ accessKey: unsplashAccessKey });
+
   const [isLoading, setIsLoading] = useState(false);
   const [listData, setListData] = useState({ results: [], total: 0 });
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
+  const [sort, setSort] = useState('latest');
+  
+  
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY;
       if (!unsplashAccessKey) {
         throw new Error('Unsplash API key is missing or invalid');
       }
-      const unsplash = createApi({ accessKey: unsplashAccessKey });
-      const res = await unsplash.photos.list({ page, perPage: 30 });
-      if (res.status === 200) {
-        const list = res.response?.results ?? [];
-        const total = res.response?.total ?? 0;
-        setError(null);
-        setListData({ results: list, total });
-        setTotalPages(Math.ceil(total / 30));
-      } else {
-        setError(`${res.status} ${res.errors[0]}`);
+      try {
+        const res = await unsplash.photos.list({ page, perPage: 30, orderBy: sort});
+        console.log(res)
+        if (res.status === 200) {
+          const list = res.response?.results ?? [];
+          const total = res.response?.total ?? 0;
+          setError(null);
+          setListData({ results: list, total });
+          setTotalPages(Math.ceil(total / 30));
+        } else {
+          throw new Error(`${res.status} ${res.errors[0]}`);
+        }
+        setIsLoading(false);
+
+      } catch(err) {
+        setError(err)
+        console.log(err)
       }
-      setIsLoading(false);
     };
 
     fetchData();
-  }, [page]);
+  }, [page, sort]);
 
   const handleFirstPage = () => {
     setPage(1);
@@ -54,8 +65,8 @@ const Gallery = ({ children }) => {
 
   return (
     <div className="gallery">
-      <Toolbar />
-      {error && <h1 className="error">{error}</h1>}
+      <Toolbar sort={sort} setSort={setSort} setListData={setListData} setTotalPages={setTotalPages} setError={setError} setIsLoading={setIsLoading} unsplash={unsplash} />
+      {error && <h1 className="error">{error.message}</h1>}
       {!error && isLoading ? (
         children
       ) : (

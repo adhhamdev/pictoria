@@ -1,18 +1,27 @@
-import { useState } from "react";
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { inter } from "@/utils/fonts";
 
-const Toolbar = () => {
-  const [sort, setSort] = useState('latest');
-  const [searchTerm, setSearchTerm] = useState('');
+const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPages, unsplash}) => {
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(searchTerm);
+  const handleSearch = async (ev) => {
+    ev.preventDefault();
+    const query = ev.target.search.value.trim();
+    const res = await unsplash.search.getPhotos({ query, perPage: 30 });
+    console.log(res)
+    if (res.status === 200) {
+      const list = res.response?.results ?? [];
+      const total = res.response?.total ?? 0;
+      setError(null);
+      setListData({ results: list, total });
+      setTotalPages(Math.ceil(total / 30));
+    } else {
+      setError(`${res.status} ${res.errors}`);
+    }
+    setIsLoading(false);
   };
 
   return (
-    <nav className="toolbar">
+    <nav className="Toolbar">
       <div className="tool">
         <ArrowsUpDownIcon aria-hidden="true" />
         <div className="sort">
@@ -38,8 +47,6 @@ const Toolbar = () => {
           type="search"
           placeholder="Search for any images..."
           style={inter.style}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
           aria-label="Search for any images"
         />
         <button type="submit">Search</button>
