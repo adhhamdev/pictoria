@@ -1,7 +1,7 @@
 import Gallery from '@/components/Gallery'
 import Shimmer from '@/components/Shimmer'
-export default async function Home(params) {
-  const unsplashCode = params.code;
+export default async function Home(searchParams) {
+  const unsplashCode = searchParams.code;
   console.log(unsplashCode)
   const clientSecret = process.env.CLIENT_SECRET;
   const clientId = process.env.CLIENT_ACCESS_KEY;
