@@ -1,9 +1,7 @@
 import Gallery from '@/components/Gallery'
 import Shimmer from '@/components/Shimmer'
-import { useSearchParams } from 'next/navigation'
-export default async function Home() {
-  const router = useSearchParams();
-  const unsplashCode = router.get('code');
+export default async function Home(params) {
+  const unsplashCode = params.code;
   console.log(unsplashCode)
   const clientSecret = process.env.CLIENT_SECRET;
   const clientId = process.env.CLIENT_ACCESS_KEY;
