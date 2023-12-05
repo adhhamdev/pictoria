@@ -6,12 +6,17 @@ export default async function Home({params, searchParams}) {
   const unsplashCode = searchParams.code;
   const clientSecret = process.env.NEXT_PUBLIC_CLIENT_SECRET;
   const clientId = process.env.NEXT_PUBLIC_CLIENT_ACCESS_KEY;
-  const authRes = await fetch(`https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=https://adhham-pictoria.netlify.app&code=${unsplashCode}&grant_type=authorization_code`, {method: 'POST'})
-  const data = await authRes.json();
-  const accessToken = data.access_token;
-  const unsplash = createApi({ accessKey: unsplashAccessKey, headers: {
-    Authorization: `Bearer ${accessToken}`
-  } });
+  let unsplash;
+  try {
+    const authRes = await fetch(`https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=https://adhham-pictoria.netlify.app&code=${unsplashCode}&grant_type=authorization_code`, {method: 'POST'})
+    const data = await authRes.json();
+    const accessToken = data.access_token;
+    unsplash = createApi({ accessKey: unsplashAccessKey, headers: {
+      Authorization: `Bearer ${accessToken}`
+    } });
+  } catch (err) {
+    console.log(err);
+  }
   return (
     <main>
       <div className="banner">
