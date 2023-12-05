@@ -3,7 +3,7 @@ import Link from "next/link";
 import { inter } from "@/utils/fonts";
 import CardFavButton from "./CardFavButton";
 import { GlobeAltIcon, CloudArrowDownIcon } from "@heroicons/react/24/solid";
-const ImageCard = ({ image }) => {
+const ImageCard = ({ accessToken, image }) => {
   const { id, color, urls, alt_description, width, height, user, links, likes, likedByUser } = image;
 
   const renderDescription = () => {
@@ -31,7 +31,7 @@ const ImageCard = ({ image }) => {
         <Link href={links.html} title="Visit Official Page">
           <GlobeAltIcon />
         </Link>
-        <CardFavButton likes={likes} likedByUser={likedByUser} id={id} />
+        <CardFavButton accessToken={accessToken} likes={likes} likedByUser={likedByUser} id={id} />
       </div>
     </div>
   );

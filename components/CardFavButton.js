@@ -3,7 +3,7 @@ import { inter } from '@/utils/fonts';
 import { HeartIcon } from '@heroicons/react/24/solid';
 import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
 
-const CardFavButton = ({ id, likes, likedByUser }) => {
+const CardFavButton = ({ accessToken, id, likes, likedByUser }) => {
   const [isFavorite, setIsFavorite] = useState(likedByUser);
 
   const handleClick = () => {
@@ -12,7 +12,9 @@ const CardFavButton = ({ id, likes, likedByUser }) => {
 
   useEffect(() => {
     const updateUserLike = async () => {
-      const res = await fetch(`https://api.unsplash.com/photos/${id}/like`, {method: 'POST'});
+      const res = await fetch(`https://api.unsplash.com/photos/${id}/like`, {method: 'POST', headers: {
+        Authorization: `Bearer ${accessToken}`
+      }});
       console.log(res);
       if (res.status === 201) {
         console.log('Updated user like');
