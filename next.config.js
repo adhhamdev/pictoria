@@ -5,7 +5,7 @@ const nextConfig = {
     },
     
     async redirects() {
-        const clientId = process.env.NEXT_PUBLC_CLIENT_ACCESS_KEY;
+        const clientId = process.env.NEXT_PUBLIC_CLIENT_ACCESS_KEY;
         return [
             {
                 source: "/",
