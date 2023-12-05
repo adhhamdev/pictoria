@@ -7,7 +7,7 @@ import ImageCard from '@/components/ImageCard';
 
 const Gallery = ({ accessToken, children }) => {
 
-  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY || "eq_nBtpFvjy3KgmsPIcrmGXEsQ7-g7F1FWlJ2OOz01I";
+  const unsplashAccessKey = "eq_nBtpFvjy3KgmsPIcrmGXEsQ7-g7F1FWlJ2OOz01I";
   const unsplash = createApi({ accessKey: unsplashAccessKey, headers: {
     Authorization: `Bearer ${accessToken}`
   } });
