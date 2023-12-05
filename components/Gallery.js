@@ -1,10 +1,16 @@
 "use client"
 import { useState, useEffect } from 'react';
+import { createApi } from 'unsplash-js';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid';
 import Toolbar from './Toolbar';
 import ImageCard from '@/components/ImageCard';
 
-const Gallery = ({ unsplash, children }) => {
+const Gallery = ({ accessToken, children }) => {
+
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY || "eq_nBtpFvjy3KgmsPIcrmGXEsQ7-g7F1FWlJ2OOz01I";
+  const unsplash = createApi({ accessKey: unsplashAccessKey, headers: {
+    Authorization: `Bearer ${accessToken}`
+  } });
 
   const [isLoading, setIsLoading] = useState(false);
   const [listData, setListData] = useState({ results: [], total: 0 });
