@@ -1,16 +1,23 @@
-"use client"
+'use client';
 import { useState, useEffect } from 'react';
 import { createApi } from 'unsplash-js';
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from '@heroicons/react/24/solid';
+import {
+  ArrowLeftCircleIcon,
+  ArrowRightCircleIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from '@heroicons/react/24/solid';
 import Toolbar from './Toolbar';
 import ImageCard from '@/components/ImageCard';
 
 const Gallery = ({ accessToken, children }) => {
-
-  const unsplashAccessKey = "eq_nBtpFvjy3KgmsPIcrmGXEsQ7-g7F1FWlJ2OOz01I";
-  const unsplash = createApi({ accessKey: unsplashAccessKey, headers: {
-    Authorization: `Bearer ${accessToken}`
-  } });
+  const unsplashAccessKey = process.env.CLIENT_ID;
+  const unsplash = createApi({
+    accessKey: unsplashAccessKey,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [listData, setListData] = useState({ results: [], total: 0 });
@@ -18,14 +25,18 @@ const Gallery = ({ accessToken, children }) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [sort, setSort] = useState('latest');
-  
+
   const fetchData = async () => {
     setIsLoading(true);
     if (!unsplashAccessKey) {
       throw new Error('Unsplash API key is missing or invalid');
     }
     try {
-      const res = await unsplash.photos.list({ page, perPage: 30, orderBy: sort});
+      const res = await unsplash.photos.list({
+        page,
+        perPage: 30,
+        orderBy: sort,
+      });
       if (res.status === 200) {
         const list = res.response?.results ?? [];
         const total = res.response?.total ?? 0;
@@ -36,15 +47,14 @@ const Gallery = ({ accessToken, children }) => {
         throw new Error(`${res.status} ${res.errors[0]}`);
       }
       setIsLoading(false);
-
-    } catch(err) {
-      setError(err)
+    } catch (err) {
+      setError(err);
     }
   };
-  
+
   useEffect(() => {
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, sort]);
 
   const handleFirstPage = () => {
@@ -64,52 +74,56 @@ const Gallery = ({ accessToken, children }) => {
   };
 
   return (
-    <div className="gallery">
-      <Toolbar sort={sort} setSort={setSort} setListData={setListData} setTotalPages={setTotalPages} setError={setError} setIsLoading={setIsLoading} unsplash={unsplash} />
-      {error && <h1 className="error">{error.message}</h1>}
+    <div className='gallery'>
+      <Toolbar
+        sort={sort}
+        setSort={setSort}
+        setListData={setListData}
+        setTotalPages={setTotalPages}
+        setError={setError}
+        setIsLoading={setIsLoading}
+        unsplash={unsplash}
+      />
+      {error && <h1 className='error'>{error.message}</h1>}
       {!error && isLoading ? (
         children
       ) : (
-        <div className="list">
+        <div className='list'>
           {listData.results.map((image) => (
             <ImageCard accessToken={accessToken} key={image.id} image={image} />
           ))}
         </div>
       )}
       {!error && (
-        <div className="paginator">
+        <div className='paginator'>
           <button
-            title="First Page"
+            title='First Page'
             onClick={handleFirstPage}
-            disabled={page === 1}
-          >
-            <ChevronDoubleLeftIcon alt="First Page" />
+            disabled={page === 1}>
+            <ChevronDoubleLeftIcon alt='First Page' />
           </button>
           <button
-            title="Previous"
+            title='Previous'
             onClick={handlePreviousPage}
-            disabled={page === 1}
-          >
-            <ArrowLeftCircleIcon alt="Previous" />
+            disabled={page === 1}>
+            <ArrowLeftCircleIcon alt='Previous' />
           </button>
-          <div className="page">
-            <p className="pgNo">{page}</p>
+          <div className='page'>
+            <p className='pgNo'>{page}</p>
             <small>Page</small>
           </div>
           <button
-            title="Next"
+            title='Next'
             onClick={handleNextPage}
-            disabled={page === totalPages}
-          >
-            <ArrowRightCircleIcon alt="Next" />
+            disabled={page === totalPages}>
+            <ArrowRightCircleIcon alt='Next' />
           </button>
           <button
-            className="next"
-            title="Last Page"
+            className='next'
+            title='Last Page'
             onClick={handleLastPage}
-            disabled={page === totalPages}
-          >
-            <ChevronDoubleRightIcon alt="Last Page" />
+            disabled={page === totalPages}>
+            <ChevronDoubleRightIcon alt='Last Page' />
           </button>
         </div>
       )}
