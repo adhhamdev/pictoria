@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pictoria-adhham.vercel.app/sitemap.xml
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: Facebot 
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+Disallow: /favorites
+
+User-agent: *
+Disallow: /favorites
+
+Host: https://vercel.com

@@ -21,7 +21,7 @@ export const metadata = {
   title: 'Pictoria | Wonder in the world of Photography',
   description:
     "A place to explore high quality images from the world's most talented photographers. Powered by Unsplash",
-  image: '/logo-transparent.png',
+  image: '/logo-icon-transparent.png',
   url: 'https://pictoria-adhham.vercel.app/',
   keywords:
     'photography, photos, images, pictures, unsplash, pictoria, pictoria app, pictoria photos, pictoria images, pictoria pictures, pictoria unsplash, pictoria photography, pictoria photos app, pictoria images app, pictoria pictures app, pictoria unsplash app, pictoria photography app, pictoria photos website, pictoria images website, pictoria pictures website, pictoria unsplash website, pictoria photography website, pictoria photos website, pictoria images website, pictoria pictures website, pictoria unsplash website, pictoria photography website, pictoria photos website, pictoria images website, pictoria pictures website, pictoria unsplash website, pictoria photography website, pictoria photos website, pictoria images website, pictoria pictures website, pictoria unsplash website, pictoria photography website, pictoria photos website, pictoria images website, pictoria pictures website, pictoria unsplash website, pictoria photography website',

@@ -17,38 +17,5 @@
       "sizes": "500x500",
       "type": "image/png"
     }
-  ],
-  "orientation": "landscape-primary",
-  "categories": ["photography", "images"],
-  "shortcuts": [
-    {
-      "name": "View Favorites",
-      "short_name": "Favorites",
-      "description": "View your favorite images",
-      "url": "/favorites",
-      "icons": [
-        {
-          "src": "/logo-icon-transparent.png",
-          "sizes": "64x64",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
-  "share_target": {
-    "action": "/share",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "Pictoria",
-      "text": "Explore the world of photography with Pictoria. Powered by Unsplash.",
-      "url": "https://pictoria-adhham.vercel.app",
-      "files": [
-        {
-          "name": "media",
-          "accept": ["image/*", "video/*"]
-        }
-      ]
-    }
-  }
+  ]
 }
