@@ -3,7 +3,7 @@ import Shimmer from '@/components/Shimmer';
 import { redirect } from 'next/navigation';
 
 const clientSecret = process.env.CLIENT_SECRET;
-const clientId = process.env.CLIENT_ID;
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const redirectUri = process.env.REDIRECT_URI;
 
 export default async function Home({ params, searchParams }) {

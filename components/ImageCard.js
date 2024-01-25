@@ -4,7 +4,7 @@ import { inter } from '@/utils/fonts';
 import CardFavButton from './CardFavButton';
 import { GlobeAltIcon, CloudArrowDownIcon } from '@heroicons/react/24/solid';
 const ImageCard = ({ accessToken, image }) => {
-  const unsplashAccessKey = process.env.CLIENT_ID;
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_CLIENT_ID;
   const unsplash = createApi({
     accessKey: unsplashAccessKey,
     headers: {
