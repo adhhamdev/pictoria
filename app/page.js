@@ -3,7 +3,7 @@ import Shimmer from '@/components/Shimmer';
 import { redirect } from 'next/navigation';
 
 const clientSecret = process.env.CLIENT_SECRET;
-const clientId = process.env.NEXT_PUBLIC_API_KEY;
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const redirectUri = process.env.REDIRECT_URI;
 
 export default async function Home({ params, searchParams }) {
@@ -15,7 +15,8 @@ export default async function Home({ params, searchParams }) {
         `https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&code=${unsplashCode}&grant_type=authorization_code`,
         { method: 'POST' }
       );
-      accessToken = res.access_token;
+      const authData = await res.json();
+      accessToken = authData.access_token;
       console.log(accessToken);
     } catch (err) {
       console.log(err);
