@@ -11,7 +11,7 @@ import Toolbar from './Toolbar';
 import ImageCard from '@/components/ImageCard';
 
 const Gallery = ({ accessToken, children }) => {
-  const unsplashAccessKey = process.env.NEXT_PUBLIC_CLIENT_ID;
+  const unsplashAccessKey = process.env.NEXT_PUBLIC_API_KEY;
   const unsplash = createApi({
     accessKey: unsplashAccessKey,
     headers: {
