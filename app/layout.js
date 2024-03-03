@@ -3,7 +3,6 @@ import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';
 import { inter } from '@/utils/fonts';
-import DarkModeButton from '@/components/DarkModeButton';
 import {
   HomeIcon,
   RectangleGroupIcon,
@@ -82,7 +81,6 @@ export default function RootLayout({ children }) {
                 text={link.text}
               />
             ))}
-            <DarkModeButton />
           </nav>
         </header>
         {children}
