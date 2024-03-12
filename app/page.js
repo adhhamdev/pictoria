@@ -1,6 +1,5 @@
 import Gallery from '@/components/Gallery';
 import Shimmer from '@/components/Shimmer';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 const clientSecret = process.env.CLIENT_SECRET;
@@ -18,7 +17,6 @@ export default async function Home({ params, searchParams }) {
       );
       const authData = await res.json();
       accessToken = authData.access_token;
-      cookies.set('accessToken', accessToken);
       console.log(accessToken);
     } catch (err) {
       console.log(err);
