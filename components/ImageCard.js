@@ -3,15 +3,7 @@ import Link from 'next/link';
 import { inter } from '@/utils/fonts';
 import CardFavButton from './CardFavButton';
 import { GlobeAltIcon, CloudArrowDownIcon } from '@heroicons/react/24/solid';
-import { createApi } from 'unsplash-js';
 const ImageCard = ({ accessToken, image }) => {
-  const unsplashAccessKey = process.env.NEXT_PUBLIC_CLIENT_ID;
-  const unsplash = createApi({
-    accessKey: unsplashAccessKey,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
 
   const {
     id,

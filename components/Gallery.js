@@ -90,7 +90,7 @@ const Gallery = ({ accessToken, children }) => {
       ) : (
         <div className='list'>
           {listData.results.map((image) => (
-            <ImageCard accessToken={accessToken} key={image.id} image={image} />
+            <ImageCard unsplash={unsplash} accessToken={accessToken} key={image.id} image={image} />
           ))}
         </div>
       )}

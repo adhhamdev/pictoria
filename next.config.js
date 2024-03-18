@@ -1,5 +1,3 @@
-const { headers } = require('next/headers');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,7 +8,7 @@ const nextConfig = {
   },
   async headers() {
     return [
-      { source: '/api/:path*', headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }] },
+      { source: '/(.*)', headers: [{ key: 'Access-Control-Allow-Origin', value: 'https://images.unsplash.com' }] },
     ];
   }
 };
