@@ -4,6 +4,7 @@ import { authenticate } from '@/utils/lib';
 
 export default async function Home({ params, searchParams }) {
   const accessToken = await authenticate(searchParams);
+  
   return (
     <main>
       <div className='banner'>

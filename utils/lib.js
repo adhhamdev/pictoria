@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
 const clientSecret = process.env.CLIENT_SECRET;
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
@@ -27,13 +27,24 @@ export const authenticate = async (searchParams) => {
 };
 
 export const updateUserLike = async (id, accessToken, isFavorite) => {
-    const res = await fetch(`https://api.unsplash.com/photos/${id}/like`, {
-      method: isFavorite ? 'DELETE': 'POST',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (res.status === 201) {
-      console.log('Updated user like');
-    }
-  };
+  const res = await fetch(`https://api.unsplash.com/photos/${id}/like`, {
+    method: isFavorite ? "DELETE" : "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  console.log(res);
+  if (res.status === 201) {
+    console.log("Updated user like");
+  }
+};
+
+export const getUser = async (accessToken) => {
+  const res = await fetch("https://api.unsplash.com/me", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const user = await res.json();
+  return user;
+};
