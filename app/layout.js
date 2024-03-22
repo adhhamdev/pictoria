@@ -56,6 +56,7 @@ const navLinks = [
 const currentYear = new Date().getFullYear();
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang='en'>
       <body style={inter.style}>
@@ -82,6 +83,17 @@ export default function RootLayout({ children }) {
               />
             ))}
           </nav>
+          <div className='profile-icon' title='Profile'>
+            <button>
+              <Image
+                src='/icon.png'
+                width={35}
+                height={35}
+                alt='Profile Icon'
+                loading='eager'
+              />
+            </button>
+          </div>
         </header>
         {children}
         <footer>

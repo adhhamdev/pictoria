@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  logging: {
+    fetches: {
+      fullUrl: false,
+    }
+  },
   images: {
     remotePatterns: [
       { hostname: 'images.unsplash.com', pathname: '**', protocol: 'https' },

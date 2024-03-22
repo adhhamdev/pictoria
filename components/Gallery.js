@@ -37,6 +37,7 @@ const Gallery = ({ accessToken, children }) => {
         perPage: 30,
         orderBy: sort,
       });
+      console.log(res);
       if (res.status === 200) {
         const list = res.response?.results ?? [];
         const total = res.response?.total ?? 0;

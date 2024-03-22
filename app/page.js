@@ -1,31 +1,9 @@
 import Gallery from '@/components/Gallery';
 import Shimmer from '@/components/Shimmer';
-import { redirect } from 'next/navigation';
-
-const clientSecret = process.env.CLIENT_SECRET;
-const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
-const redirectUri = process.env.REDIRECT_URI;
+import { authenticate } from '@/utils/lib';
 
 export default async function Home({ params, searchParams }) {
-  let accessToken;
-  if (searchParams.code) {
-    try {
-      const unsplashCode = searchParams.code;
-      const res = await fetch(
-        `https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&code=${unsplashCode}&grant_type=authorization_code`,
-        { method: 'POST' }
-      );
-      const authData = await res.json();
-      accessToken = authData.access_token;
-      console.log(accessToken);
-    } catch (err) {
-      console.log(err);
-    }
-  } else {
-    redirect(
-      `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public+read_user+write_likes+write_photos`
-    );
-  }
+  const accessToken = await authenticate(searchParams);
   return (
     <main>
       <div className='banner'>
