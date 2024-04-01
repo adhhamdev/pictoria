@@ -2,7 +2,7 @@ import './globals.css';
 import Link from 'next/link';
 import NavLink from '@/components/NavLink';
 import Image from 'next/image';
-import { inter } from '@/utils/fonts';
+import { inter } from '@/lib/fonts';
 import {
   HomeIcon,
   RectangleGroupIcon,

@@ -1,5 +1,5 @@
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import { inter } from "@/utils/fonts";
+import { inter } from "@/lib/fonts";
 
 const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPages, unsplash}) => {
 

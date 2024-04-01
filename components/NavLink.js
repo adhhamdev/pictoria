@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
-import { inter } from "@/utils/fonts";
+import { inter } from "@/lib/fonts";
 
 const NavLink = ({ href, iconOutline, icon, text }) => {
   const pathname = usePathname();

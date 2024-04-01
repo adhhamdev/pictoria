@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { inter } from "@/utils/fonts";
+import { inter } from "@/lib/fonts";
 import { HeartIcon } from "@heroicons/react/24/solid";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
-import { updateUserLike } from "@/utils/lib";
+import { updateUserLike } from "@/lib/utils";
 
 const CardFavButton = ({ accessToken, id, likes, likedByUser }) => {
   const [isFavorite, setIsFavorite] = useState(likedByUser);

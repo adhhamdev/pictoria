@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { inter } from '@/utils/fonts';
+import { inter } from '@/lib/fonts';
 import CardFavButton from './CardFavButton';
 import { GlobeAltIcon, CloudArrowDownIcon } from '@heroicons/react/24/solid';
 const ImageCard = ({ unsplash, accessToken, image }) => {

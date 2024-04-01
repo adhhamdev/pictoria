@@ -1,6 +1,6 @@
 import Gallery from '@/components/Gallery';
 import Shimmer from '@/components/Shimmer';
-import { authenticate } from '@/utils/lib';
+import { authenticate } from '@/lib/utils';
 
 export default async function Home({ params, searchParams }) {
   const accessToken = await authenticate(searchParams);
