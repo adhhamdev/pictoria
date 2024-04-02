@@ -1,16 +1,17 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { createApi } from 'unsplash-js';
+"use client";
+import { useState, useEffect, Suspense } from "react";
+import { createApi } from "unsplash-js";
 import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
-} from '@heroicons/react/24/solid';
-import Toolbar from './Toolbar';
-import ImageCard from '@/components/ImageCard';
+} from "@heroicons/react/24/solid";
+import Toolbar from "./Toolbar";
+import ImageCard from "@/components/ImageCard";
 
 const Gallery = ({ accessToken, children }) => {
+  localStorage.setItem("accessToken", accessToken);
   const unsplashAccessKey = process.env.NEXT_PUBLIC_CLIENT_ID;
   const unsplash = createApi({
     accessKey: unsplashAccessKey,
@@ -24,12 +25,12 @@ const Gallery = ({ accessToken, children }) => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [sort, setSort] = useState('latest');
+  const [sort, setSort] = useState("latest");
 
   const fetchData = async () => {
     setIsLoading(true);
     if (!unsplashAccessKey) {
-      throw new Error('Unsplash API key is missing or invalid');
+      throw new Error("Unsplash API key is missing or invalid");
     }
     try {
       const res = await unsplash.photos.list({
@@ -75,7 +76,7 @@ const Gallery = ({ accessToken, children }) => {
   };
 
   return (
-    <div className='gallery'>
+    <div className="gallery">
       <Toolbar
         sort={sort}
         setSort={setSort}
@@ -85,46 +86,57 @@ const Gallery = ({ accessToken, children }) => {
         setIsLoading={setIsLoading}
         unsplash={unsplash}
       />
-      {error && <h1 className='error'>{error.message}</h1>}
+      {error && <h1 className="error">{error.message}</h1>}
       {!error && isLoading ? (
         children
       ) : (
-        <div className='list'>
-          {listData.results.map((image) => (
-            <ImageCard unsplash={unsplash} accessToken={accessToken} key={image.id} image={image} />
-          ))}
+        <div className="list">
+          <Suspense fallback={<div>Loading...</div>}>
+            {listData.results.map((image) => (
+              <ImageCard
+                unsplash={unsplash}
+                accessToken={accessToken}
+                key={image.id}
+                image={image}
+              />
+            ))}
+          </Suspense>
         </div>
       )}
       {!error && (
-        <div className='paginator'>
+        <div className="paginator">
           <button
-            title='First Page'
+            title="First Page"
             onClick={handleFirstPage}
-            disabled={page === 1}>
-            <ChevronDoubleLeftIcon alt='First Page' />
+            disabled={page === 1}
+          >
+            <ChevronDoubleLeftIcon alt="First Page" />
           </button>
           <button
-            title='Previous'
+            title="Previous"
             onClick={handlePreviousPage}
-            disabled={page === 1}>
-            <ArrowLeftCircleIcon alt='Previous' />
+            disabled={page === 1}
+          >
+            <ArrowLeftCircleIcon alt="Previous" />
           </button>
-          <div className='page'>
-            <p className='pgNo'>{page}</p>
+          <div className="page">
+            <p className="pgNo">{page}</p>
             <small>Page</small>
           </div>
           <button
-            title='Next'
+            title="Next"
             onClick={handleNextPage}
-            disabled={page === totalPages}>
-            <ArrowRightCircleIcon alt='Next' />
+            disabled={page === totalPages}
+          >
+            <ArrowRightCircleIcon alt="Next" />
           </button>
           <button
-            className='next'
-            title='Last Page'
+            className="next"
+            title="Last Page"
             onClick={handleLastPage}
-            disabled={page === totalPages}>
-            <ChevronDoubleRightIcon alt='Last Page' />
+            disabled={page === totalPages}
+          >
+            <ChevronDoubleRightIcon alt="Last Page" />
           </button>
         </div>
       )}
