@@ -15,7 +15,7 @@ const ImageCard = ({ unsplash, accessToken, image }) => {
     user,
     links,
     likes,
-    likedByUser,
+    liked_by_user,
   } = image;
 
   const renderDescription = () => {
@@ -58,7 +58,7 @@ const ImageCard = ({ unsplash, accessToken, image }) => {
         <CardFavButton
           accessToken={accessToken}
           likes={likes}
-          likedByUser={likedByUser}
+          likedByUser={liked_by_user}
           id={id}
         />
       </div>

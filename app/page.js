@@ -1,10 +1,11 @@
 import Gallery from '@/components/Gallery';
 import Shimmer from '@/components/Shimmer';
-import { authenticate } from '@/lib/utils';
+import { authenticate } from '@/lib/actions';
+import { cookies } from 'next/headers';
 
 export default async function Home({ params, searchParams }) {
   const accessToken = await authenticate(searchParams);
-  
+  cookies().get('accessToken');
   return (
     <main>
       <div className='banner'>
