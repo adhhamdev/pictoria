@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
-import { createApi } from "unsplash-js";
 import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
@@ -11,14 +10,7 @@ import Toolbar from "./Toolbar";
 import ImageCard from "@/components/ImageCard";
 
 const Gallery = ({ accessToken, children }) => {
-  localStorage.setItem("accessToken", accessToken);
   const unsplashAccessKey = process.env.NEXT_PUBLIC_CLIENT_ID;
-  const unsplash = createApi({
-    accessKey: unsplashAccessKey,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [listData, setListData] = useState({ results: [], total: 0 });
@@ -33,15 +25,10 @@ const Gallery = ({ accessToken, children }) => {
       throw new Error("Unsplash API key is missing or invalid");
     }
     try {
-      const res = await unsplash.photos.list({
-        page,
-        perPage: 30,
-        orderBy: sort,
-      });
-      console.log(res);
+      const res = await fetch('https://api.unsplash.com/photos', { headers: { "Authorization": `Bearer ${accessToken}` } })
       if (res.status === 200) {
-        const list = res.response?.results ?? [];
-        const total = res.response?.total ?? 0;
+        const list = await res.json();
+        const total = res.length;
         setError(null);
         setListData({ results: list, total });
         setTotalPages(Math.ceil(total / 30));
@@ -84,7 +71,6 @@ const Gallery = ({ accessToken, children }) => {
         setTotalPages={setTotalPages}
         setError={setError}
         setIsLoading={setIsLoading}
-        unsplash={unsplash}
       />
       {error && <h1 className="error">{error.message}</h1>}
       {!error && isLoading ? (
@@ -94,7 +80,6 @@ const Gallery = ({ accessToken, children }) => {
           <Suspense fallback={<div>Loading...</div>}>
             {listData.results.map((image) => (
               <ImageCard
-                unsplash={unsplash}
                 accessToken={accessToken}
                 key={image.id}
                 image={image}
