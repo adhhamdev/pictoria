@@ -25,7 +25,9 @@ const Gallery = ({ accessToken, children }) => {
       throw new Error("Unsplash API key is missing or invalid");
     }
     try {
-      const res = await fetch('https://api.unsplash.com/photos', { headers: { "Authorization": `Bearer ${accessToken}` } })
+      const url = `https://api.unsplash.com/photos?page=${page}&order_by=${sort}&per_page=30`;
+      const res = await fetch(url, { headers: { "Authorization": `Bearer ${accessToken}` } })
+      console.log(res)
       if (res.status === 200) {
         const list = await res.json();
         const total = res.length;
@@ -42,8 +44,8 @@ const Gallery = ({ accessToken, children }) => {
   };
 
   useEffect(() => {
+    localStorage.setItem("accessToken", accessToken);
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, sort]);
 
   const handleFirstPage = () => {

@@ -2,13 +2,13 @@ import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid
 import { inter } from "@/lib/fonts";
 
 const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPages}) => {
-
+const accessToken = localStorage.getItem("accessToken");
   const handleSearch = async (ev) => {
     ev.preventDefault();
     const query = ev.target.search.value.trim();
     const res = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=30`, {
       headers: {
-        Authorization: `Client-ID YOUR_ACCESS_KEY`
+        Authorization: `Bearer ${accessToken}`
       }
     }).then(response => response.json());
     if (res.status === 200) {
