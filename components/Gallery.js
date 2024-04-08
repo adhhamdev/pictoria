@@ -19,34 +19,33 @@ const Gallery = ({ accessToken, children }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [sort, setSort] = useState("latest");
 
-  const fetchData = async () => {
-    setIsLoading(true);
-    if (!unsplashAccessKey) {
-      throw new Error("Unsplash API key is missing or invalid");
-    }
-    try {
-      const url = `https://api.unsplash.com/photos?page=${page}&order_by=${sort}&per_page=30`;
-      const res = await fetch(url, { headers: { "Authorization": `Bearer ${accessToken}` } })
-      console.log(res)
-      if (res.status === 200) {
-        const list = await res.json();
-        const total = res.length;
-        setError(null);
-        setListData({ results: list, total });
-        setTotalPages(Math.ceil(total / 30));
-      } else {
-        throw new Error(`${res.status} ${res.errors[0]}`);
-      }
-      setIsLoading(false);
-    } catch (err) {
-      setError(err);
-    }
-  };
-
   useEffect(() => {
-    localStorage.setItem("accessToken", accessToken);
+    const fetchData = async () => {
+      setIsLoading(true);
+      if (!unsplashAccessKey) {
+        throw new Error("Unsplash API key is missing or invalid");
+      }
+      try {
+        const url = `https://api.unsplash.com/photos?page=${page}&order_by=${sort}&per_page=30`;
+        const res = await fetch(url, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (res.status === 200) {
+          const list = await res.json();
+          const total = res.headers.get("X-Total");
+          setError(null);
+          setListData({ results: list, total });
+          setTotalPages(Math.ceil(total / 30));
+        } else {
+          throw new Error(`${res.status} ${res.errors[0]}`);
+        }
+        setIsLoading(false);
+      } catch (err) {
+        setError(err);
+      }
+    };
     fetchData();
-  }, [page, sort]);
+  }, [page, sort, accessToken, unsplashAccessKey]);
 
   const handleFirstPage = () => {
     setPage(1);
@@ -73,6 +72,7 @@ const Gallery = ({ accessToken, children }) => {
         setTotalPages={setTotalPages}
         setError={setError}
         setIsLoading={setIsLoading}
+        accessToken={accessToken}
       />
       {error && <h1 className="error">{error.message}</h1>}
       {!error && isLoading ? (

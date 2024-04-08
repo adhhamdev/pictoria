@@ -1,8 +1,7 @@
 import { ArrowsUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { inter } from "@/lib/fonts";
 
-const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPages}) => {
-const accessToken = localStorage.getItem("accessToken");
+const Toolbar = ({sort, setSort, setListData, setError, setIsLoading, setTotalPages, accessToken}) => {
   const handleSearch = async (ev) => {
     ev.preventDefault();
     const query = ev.target.search.value.trim();
