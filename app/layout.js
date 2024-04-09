@@ -15,6 +15,7 @@ import {
   HeartIcon as HeartIconOutline,
   IdentificationIcon as IdentificationIconOutline,
 } from "@heroicons/react/24/outline";
+import { cookies } from "next/headers";
 import { getUser } from "@/lib/actions";
 
 export const metadata = {
@@ -57,8 +58,9 @@ const navLinks = [
 const currentYear = new Date().getFullYear();
 
 export default async function RootLayout({ children }) {
-  const user = await getUser();
-  console.log(user);
+  const code = cookies().get("code").value;
+  const user = await getUser(code);
+  console.log("user", user);
   return (
     <html lang="en">
       <body style={inter.style}>
