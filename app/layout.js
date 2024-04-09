@@ -15,6 +15,7 @@ import {
   HeartIcon as HeartIconOutline,
   IdentificationIcon as IdentificationIconOutline,
 } from "@heroicons/react/24/outline";
+import { getUser } from "@/lib/actions";
 
 export const metadata = {
   title: "Pictoria | Wonder in the world of Photography",
@@ -55,7 +56,9 @@ const navLinks = [
 
 const currentYear = new Date().getFullYear();
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const user = await getUser();
+  console.log(user);
   return (
     <html lang="en">
       <body style={inter.style}>
