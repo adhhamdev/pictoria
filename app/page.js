@@ -3,7 +3,7 @@ import Shimmer from '@/components/Shimmer';
 import { authenticate } from '@/lib/actions';
 
 export default async function Home({ params, searchParams }) {
-  const accessToken = await authenticate(searchParams.code);
+  // const accessToken = await authenticate(searchParams.code);
   return (
     <main>
       <div className='banner'>
@@ -13,9 +13,9 @@ export default async function Home({ params, searchParams }) {
           something for you.
         </p>
       </div>
-      <Gallery accessToken={accessToken}>
+      {/* <Gallery accessToken={accessToken}>
         <Shimmer />
-      </Gallery>
+      </Gallery> */}
     </main>
   );
 }

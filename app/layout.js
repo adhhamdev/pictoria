@@ -58,9 +58,9 @@ const navLinks = [
 const currentYear = new Date().getFullYear();
 
 export default async function RootLayout({ children }) {
-  const code = cookies().get("code");
-  const user = await getUser(code);
-  console.log("user", user);
+  // const code = cookies().get("code");
+  // const user = await getUser(code);
+  // console.log("user", user);
   return (
     <html lang="en">
       <body style={inter.style}>

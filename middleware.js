@@ -7,12 +7,18 @@ const redirectUri = process.env.REDIRECT_URI;
 export const middleware = async (req) => {
   let params = req.nextUrl.search;
   const url = new URLSearchParams(params);
-  const code = url.get("code");
-  req.cookies.set("code", code);
-  const res = await fetch(
-    `https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&code=${code}&grant_type=authorization_code`,
-    { method: "POST" }
-  );
+ if( url.has("code")) {
+   const code = url.get("code");
+   console.log(code)
+   req.cookies.set("code", code);
+   return NextResponse.redirect(
+     `https://unsplash.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&code=${code}&grant_type=authorization_code`
+   );
+ } else {
+  return NextResponse.redirect(
+     `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public+read_user+write_likes+write_photos`
+   );
+ }
   // response.cookies.set("token", accessToken);
   // console.log("authentication", code, accessToken)
   // console.log(req.nextUrl);
