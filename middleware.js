@@ -7,7 +7,7 @@ const redirectUri = process.env.REDIRECT_URI;
 export const middleware = async (req) => {
   let params = req.nextUrl.search;
   const url = new URLSearchParams(params);
- if( url.has("code")) {
+ if( url.has("code") && req.cookies.get('code')) {
    const code = url.get("code");
    console.log(code)
    req.cookies.set("code", code);
@@ -16,8 +16,7 @@ export const middleware = async (req) => {
    );
  } else {
   return NextResponse.redirect(
-     `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public+read_user+write_likes+write_photos`
-   );
+     `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public+read_user+write_likes+write_photos`)
  }
   // response.cookies.set("token", accessToken);
   // console.log("authentication", code, accessToken)
