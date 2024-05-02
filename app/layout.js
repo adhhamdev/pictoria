@@ -15,8 +15,6 @@ import {
   HeartIcon as HeartIconOutline,
   IdentificationIcon as IdentificationIconOutline,
 } from "@heroicons/react/24/outline";
-import { cookies } from "next/headers";
-import { getUser } from "@/lib/actions";
 
 export const metadata = {
   title: "Pictoria | Wonder in the world of Photography",
@@ -58,9 +56,6 @@ const navLinks = [
 const currentYear = new Date().getFullYear();
 
 export default async function RootLayout({ children }) {
-  // const code = cookies().get("code");
-  // const user = await getUser(code);
-  // console.log("user", user);
   return (
     <html lang="en">
       <body style={inter.style}>
